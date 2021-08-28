@@ -1,6 +1,7 @@
 package cronnoss.springframework;
 
 import cronnoss.examplebeans.FakeDataSource;
+import cronnoss.examplebeans.FakeJmsBroker;
 import cronnoss.springframework.controllers.MyController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,5 +20,9 @@ public class DiDemoApplication {
         FakeDataSource fakeDataSource = (FakeDataSource) ctx.getBean(FakeDataSource.class);
 
         System.out.println(fakeDataSource.getUser());
+
+        FakeJmsBroker fakeJmsBroker = (FakeJmsBroker) ctx.getBean(FakeJmsBroker.class);
+
+        System.out.println(fakeJmsBroker.getUsername());
     }
 }
