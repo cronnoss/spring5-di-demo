@@ -1,26 +1,23 @@
 package cronnoss.springframework;
 
-import cronnoss.springframework.controllers.ConstructorInjectedController;
-import cronnoss.springframework.controllers.GetterInjectedController;
+import cronnoss.examplebeans.FakeDataSource;
 import cronnoss.springframework.controllers.MyController;
-import cronnoss.springframework.controllers.PropertyInjectedController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"cronnoss.services", "cronnoss.springframework"})
+@ComponentScan(basePackages = {"cronnoss.services", "cronnoss.springframework", "cronnoss.examplebeans", "cronnoss.config"})
 public class DiDemoApplication {
 
-	public static void main(String[] args) {
-		ApplicationContext ctx = SpringApplication.run(DiDemoApplication.class, args);
+    public static void main(String[] args) {
+        ApplicationContext ctx = SpringApplication.run(DiDemoApplication.class, args);
 
-		MyController controller = (MyController) ctx.getBean("myController");
+        MyController controller = (MyController) ctx.getBean("myController");
 
-		System.out.println(controller.hello());
-		System.out.println(ctx.getBean(PropertyInjectedController.class).sayHello());
-		System.out.println(ctx.getBean(GetterInjectedController.class).sayHello());
-		System.out.println(ctx.getBean(ConstructorInjectedController.class).sayHello());
-	}
+        FakeDataSource fakeDataSource = (FakeDataSource) ctx.getBean(FakeDataSource.class);
+
+        System.out.println(fakeDataSource.getUser());
+    }
 }
