@@ -3,3 +3,9 @@ cronnoss:
     username: JMS Username
     password: somepass
     url: SomeURL
+---
+spring:
+  profiles: de
+cronnoss:
+  jms:
+    username: JMS Username $$$$$$$$ German
